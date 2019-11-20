@@ -7,6 +7,9 @@
 #include "f3.h"
 #include "f4.h"
 
+#include "Matriz.h"
+#include "MathUtils.h"
+
 int main()
 {
 	const double S = 16.0;
@@ -84,13 +87,21 @@ int main()
 	std::vector<double> BB;
 	BB.resize(4);
 
-	AA[0] = errorFunc1.JacobianU1(meanChord, Xref, Xdotref, mass, deltaEref);
+	BB[0] = errorFunc1.JacobianU1(meanChord, Xref, Xdotref, mass, deltaEref);
 	
-	AA[1] = errorFunc2.JacobianU1(meanChord, Xref, Xdotref, mass, deltaEref);
+	BB[1] = errorFunc2.JacobianU1(meanChord, Xref, Xdotref, mass, deltaEref);
 	
-	AA[2] = errorFunc3.JacobianU1(meanChord, Xref, Xdotref, mass, deltaEref);
+	BB[2] = errorFunc3.JacobianU1(meanChord, Xref, Xdotref, mass, deltaEref);
 	
-	AA[3] = errorFunc4.JacobianU1(Xref, Xdotref);
+	BB[3] = errorFunc4.JacobianU1(Xref, Xdotref);
+
+
+	Matriz mAA(AA, 4, 4);
+	Matriz mBB(BB, 4, 1);
+	Matriz mEE(EE, 4, 4);
+
+	
+
 
     return 0;
 }
