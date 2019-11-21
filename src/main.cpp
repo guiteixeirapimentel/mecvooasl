@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#define PI 3.14159265359
 
 #include "f1.h"
 #include "f2.h"
@@ -9,6 +8,8 @@
 
 #include "Math/Matriz.h"
 #include "Math/MathUtils.h"
+
+constexpr double PI = 3.14159265359;
 
 int main()
 {
@@ -104,6 +105,10 @@ int main()
 	Matriz mEEinv = CalcInvMatriz(mEE);
 	
 	Matriz I = mEE * mEEinv;
+
+	Matriz mA = mEEinv * mAA;
+	Matriz MB = mEEinv * mBB;
+
 
     return 0;
 }
