@@ -235,13 +235,29 @@ Matriz CalcInvMatriz(const Matriz& A)
 	Matriz L = MatrizZeros(1, 1);
 	Matriz U = MatrizZeros(1, 1);
 
-	Matriz v1({1.0, 0.0, 0.0, 0.0}, 4, 1);
-	Matriz v2({0.0, 1.0, 0.0, 0.0}, 4, 1);
-	Matriz v3({0.0, 0.0, 1.0, 0.0}, 4, 1);
-	Matriz v3({0.0, 0.0, 0.0, 1.0}, 4, 1);
-
 	DecompPALU(A, P, L, U);
 
-	Matriz Pv1 = P * v1;
+	std::vector<double> res;
+	res.resize(A.cNumLinhas*A.cNumColunas);
 
+	for(size_t j = 0; j < A.cNumColunas; j++)
+	{
+		Matriz v = MatrizZeros(A.cNumLinhas, 1);
+
+		(*v.GetPtrMatriz())[j] = 1.0;
+
+		v = P*v;
+		Matriz K = SubstSucessivas(L, v);
+
+		// K = UX
+
+		Matriz x = SubstRetroativas(U, K);
+
+		for(size_t i = 0; i < A.cNumLinhas; i++)
+		{
+			res[j + (i * A.cNumColunas)] = (*x.GetPtrMatriz())[i];
+		}
+	}
+
+	return Matriz(res, A.cNumLinhas, A.cNumColunas);
 }

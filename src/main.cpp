@@ -7,8 +7,8 @@
 #include "f3.h"
 #include "f4.h"
 
-#include "Matriz.h"
-#include "MathUtils.h"
+#include "Math/Matriz.h"
+#include "Math/MathUtils.h"
 
 int main()
 {
@@ -51,10 +51,10 @@ int main()
 	EE[2 + (4 * 1)] = errorFunc2.JacobianX3(meanChord, Xref, Xdotref, mass, deltaEref);
 	EE[3 + (4 * 1)] = errorFunc2.JacobianX4(meanChord, Xref, Xdotref, mass, deltaEref);
 
-	EE[0 + (4 * 2)] = errorFunc3.JacobianX1(meanChord, Xref, Xdotref, mass, deltaEref);
-	EE[1 + (4 * 2)] = errorFunc3.JacobianX2(meanChord, Xref, Xdotref, mass, deltaEref);
-	EE[2 + (4 * 2)] = errorFunc3.JacobianX3(meanChord, Xref, Xdotref, mass, deltaEref);
-	EE[3 + (4 * 2)] = errorFunc3.JacobianX4(meanChord, Xref, Xdotref, mass, deltaEref);
+	EE[0 + (4 * 2)] = errorFunc3.JacobianX1(meanChord, Xref, Xdotref, momentInertia, deltaEref);
+	EE[1 + (4 * 2)] = errorFunc3.JacobianX2(meanChord, Xref, Xdotref, momentInertia, deltaEref);
+	EE[2 + (4 * 2)] = errorFunc3.JacobianX3(meanChord, Xref, Xdotref, momentInertia, deltaEref);
+	EE[3 + (4 * 2)] = errorFunc3.JacobianX4(meanChord, Xref, Xdotref, momentInertia, deltaEref);
 
 	EE[0 + (4 * 3)] = errorFunc4.JacobianX1(Xref, Xdotref);
 	EE[1 + (4 * 3)] = errorFunc4.JacobianX2(Xref, Xdotref);
@@ -74,10 +74,10 @@ int main()
 	AA[2 + (4 * 1)] = errorFunc2.JacobianXdot3(meanChord, Xref, Xdotref, mass, deltaEref);
 	AA[3 + (4 * 1)] = errorFunc2.JacobianXdot4(meanChord, Xref, Xdotref, mass, deltaEref);
 
-	AA[0 + (4 * 2)] = errorFunc3.JacobianXdot1(meanChord, Xref, Xdotref, mass, deltaEref);
-	AA[1 + (4 * 2)] = errorFunc3.JacobianXdot2(meanChord, Xref, Xdotref, mass, deltaEref);
-	AA[2 + (4 * 2)] = errorFunc3.JacobianXdot3(meanChord, Xref, Xdotref, mass, deltaEref);
-	AA[3 + (4 * 2)] = errorFunc3.JacobianXdot4(meanChord, Xref, Xdotref, mass, deltaEref);
+	AA[0 + (4 * 2)] = errorFunc3.JacobianXdot1(meanChord, Xref, Xdotref, momentInertia, deltaEref);
+	AA[1 + (4 * 2)] = errorFunc3.JacobianXdot2(meanChord, Xref, Xdotref, momentInertia, deltaEref);
+	AA[2 + (4 * 2)] = errorFunc3.JacobianXdot3(meanChord, Xref, Xdotref, momentInertia, deltaEref);
+	AA[3 + (4 * 2)] = errorFunc3.JacobianXdot4(meanChord, Xref, Xdotref, momentInertia, deltaEref);
 
 	AA[0 + (4 * 3)] = errorFunc4.JacobianXdot1(Xref, Xdotref);
 	AA[1 + (4 * 3)] = errorFunc4.JacobianXdot2(Xref, Xdotref);
@@ -91,7 +91,7 @@ int main()
 	
 	BB[1] = errorFunc2.JacobianU1(meanChord, Xref, Xdotref, mass, deltaEref);
 	
-	BB[2] = errorFunc3.JacobianU1(meanChord, Xref, Xdotref, mass, deltaEref);
+	BB[2] = errorFunc3.JacobianU1(meanChord, Xref, Xdotref, momentInertia, deltaEref);
 	
 	BB[3] = errorFunc4.JacobianU1(Xref, Xdotref);
 
@@ -100,8 +100,10 @@ int main()
 	Matriz mBB(BB, 4, 1);
 	Matriz mEE(EE, 4, 4);
 
-	
 
+	Matriz mEEinv = CalcInvMatriz(mEE);
+	
+	Matriz I = mEE * mEEinv;
 
     return 0;
 }
