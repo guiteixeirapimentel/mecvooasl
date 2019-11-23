@@ -1,7 +1,10 @@
 #include <iostream>
 #include <vector>
+<<<<<<< HEAD
 #include <fstream>
 #include "ElevatorFunction.h"
+=======
+>>>>>>> a000e56bf0ba1549c0e1eb08a8d8b3f6cf9bda77
 
 #include "f1.h"
 #include "f2.h"
@@ -10,6 +13,8 @@
 
 #include "Math/Matriz.h"
 #include "Math/MathUtils.h"
+
+constexpr double PI = 3.14159265359;
 
 int main()
 {
@@ -157,6 +162,10 @@ int main()
 	}
 
 	arq.close();
+
+	Matriz mA = mEEinv * mAA;
+	Matriz MB = mEEinv * mBB;
+
 
     return 0;
 }
