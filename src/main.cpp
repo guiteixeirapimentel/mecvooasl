@@ -11,8 +11,6 @@
 #include "Math/Matriz.h"
 #include "Math/MathUtils.h"
 
-constexpr double PI = 3.14159265359;
-
 int main()
 {
 	const double S = 16.0;
