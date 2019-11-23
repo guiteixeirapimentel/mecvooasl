@@ -9,6 +9,7 @@ class Matriz
 public:
 	Matriz(const std::vector<double>& M, size_t numLinhas, size_t numColunas);
 	Matriz(std::vector<double>&& M, size_t numLinhas, size_t numColunas);
+	Matriz();
 	~Matriz()
 	{}
 

@@ -16,7 +16,7 @@ public:
 
     double JacobianX1(const State& Xref, const StateDot& Xdotref) const
     {
-        double delta = 1e-7;
+        double delta = 1e-10;
         State X = Xref;
         
         X.u = Xref.u - delta;
@@ -29,7 +29,7 @@ public:
 
     double JacobianX2(const State& Xref, const StateDot& Xdotref) const
     {
-        double delta = 1e-7;
+        double delta = 1e-10;
         State X = Xref;
         
         X.w = Xref.w - delta;
@@ -42,7 +42,7 @@ public:
 
     double JacobianX3(const State& Xref, const StateDot& Xdotref) const
     {
-        double delta = 1e-7;
+        double delta = 1e-10;
         State X = Xref;
         
         X.q = Xref.q - delta;
@@ -55,7 +55,7 @@ public:
 
     double JacobianX4(const State& Xref, const StateDot& Xdotref) const
     {
-        double delta = 1e-7;
+        double delta = 1e-10;
         State X = Xref;
         
         X.theta = Xref.theta - delta;
@@ -68,7 +68,7 @@ public:
 
     double JacobianXdot1(const State& Xref, const StateDot& Xdotref) const
     {
-        double delta = 1e-7;
+        double delta = 1e-10;
         StateDot Xdot = Xdotref;
         
         Xdot.udot = Xdotref.udot - delta;
@@ -81,7 +81,7 @@ public:
 
     double JacobianXdot2(const State& Xref, const StateDot& Xdotref) const
     {
-        double delta = 1e-7;
+        double delta = 1e-10;
         StateDot Xdot = Xdotref;
         
         Xdot.wdot = Xdotref.wdot - delta;
@@ -94,7 +94,7 @@ public:
 
     double JacobianXdot3(const State& Xref, const StateDot& Xdotref) const
     {
-        double delta = 1e-7;
+        double delta = 1e-10;
         StateDot Xdot = Xdotref;
         
         Xdot.qdot = Xdotref.qdot - delta;
@@ -107,10 +107,10 @@ public:
 
     double JacobianXdot4(const State& Xref, const StateDot& Xdotref) const
     {
-        double delta = 1e-7;
+        double delta = 1e-10;
         StateDot Xdot = Xdotref;
         
-        Xdot.wdot = Xdotref.wdot - delta;
+        Xdot.thetadot = Xdotref.thetadot - delta;
         double res = operator()(Xref, Xdotref)- 
         operator()(Xref, Xdot);
         res /= delta;  
@@ -120,7 +120,7 @@ public:
 
     double JacobianU1(const State& Xref, const StateDot& Xdotref) const
     {
-        double delta = 1e-7;        
+        double delta = 1e-10;        
         double res = operator()(Xref, Xdotref)- 
         operator()(Xref, Xdotref);
         res /= delta;  

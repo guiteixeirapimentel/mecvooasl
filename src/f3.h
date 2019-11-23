@@ -29,7 +29,7 @@ public:
     double JacobianX1(double meanchord,
     const State& Xref, const StateDot& Xdotref, double momentInertia, double deltaEref) const
     {
-        double delta = 1e-7;
+        double delta = 1e-10;
         State X = Xref;
         
         X.u = Xref.u - delta;
@@ -43,7 +43,7 @@ public:
     double JacobianX2(double meanchord,
     const State& Xref, const StateDot& Xdotref, double momentInertia, double deltaEref) const
     {
-        double delta = 1e-7;
+        double delta = 1e-10;
         State X = Xref;
         
         X.w = Xref.w - delta;
@@ -57,7 +57,7 @@ public:
     double JacobianX3(double meanchord,
     const State& Xref, const StateDot& Xdotref, double momentInertia, double deltaEref) const
     {
-        double delta = 1e-7;
+        double delta = 1e-10;
         State X = Xref;
         
         X.q = Xref.q - delta;
@@ -71,7 +71,7 @@ public:
     double JacobianX4(double meanchord,
     const State& Xref, const StateDot& Xdotref, double momentInertia, double deltaEref) const
     {
-        double delta = 1e-7;
+        double delta = 1e-10;
         State X = Xref;
         
         X.theta = Xref.theta - delta;
@@ -85,7 +85,7 @@ public:
     double JacobianXdot1(double meanchord,
     const State& Xref, const StateDot& Xdotref, double momentInertia, double deltaEref) const
     {
-        double delta = 1e-7;
+        double delta = 1e-10;
         StateDot Xdot = Xdotref;
         
         Xdot.udot = Xdotref.udot - delta;
@@ -99,7 +99,7 @@ public:
     double JacobianXdot2(double meanchord,
     const State& Xref, const StateDot& Xdotref, double momentInertia, double deltaEref) const
     {
-        double delta = 1e-7;
+        double delta = 1e-10;
         StateDot Xdot = Xdotref;
         
         Xdot.wdot = Xdotref.wdot - delta;
@@ -113,7 +113,7 @@ public:
     double JacobianXdot3(double meanchord,
     const State& Xref, const StateDot& Xdotref, double momentInertia, double deltaEref) const
     {
-        double delta = 1e-7;
+        double delta = 1e-10;
         StateDot Xdot = Xdotref;
         
         Xdot.qdot = Xdotref.qdot - delta;
@@ -127,10 +127,10 @@ public:
     double JacobianXdot4(double meanchord,
     const State& Xref, const StateDot& Xdotref, double momentInertia, double deltaEref) const
     {
-        double delta = 1e-7;
+        double delta = 1e-10;
         StateDot Xdot = Xdotref;
         
-        Xdot.wdot = Xdotref.wdot - delta;
+        Xdot.thetadot = Xdotref.thetadot - delta;
         double res = operator()(meanchord, Xref, Xdotref, momentInertia, deltaEref)- 
         operator()(meanchord, Xref, Xdot, momentInertia, deltaEref);
         res /= delta;  
@@ -141,7 +141,7 @@ public:
     double JacobianU1(double meanchord,
     const State& Xref, const StateDot& Xdotref, double momentInertia, double deltaEref) const
     {
-        double delta = 1e-7;        
+        double delta = 1e-10;        
         double res = operator()(meanchord, Xref, Xdotref, momentInertia, deltaEref)- 
         operator()(meanchord, Xref, Xdotref, momentInertia, deltaEref - delta);
         res /= delta;  

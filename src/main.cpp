@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
-#define PI 3.14159265359
+#include <fstream>
+#include "ElevatorFunction.h"
 
 #include "f1.h"
 #include "f2.h"
@@ -36,53 +37,53 @@ int main()
 
 	State Xref(70.0, 0.0, 0.0, 0.0);
 	StateDot Xdotref(0.0, 0.0, 0.0, 0.0);
-	double deltaEref = 2 * PI / 180.0;
+	double deltaEref = 2 * M_PI / 180.0;
 
 	std::vector<double> EE;
 	EE.resize(4*4);
 
-	EE[0] = errorFunc1.JacobianX1(meanChord, Xref, Xdotref, mass, deltaEref);
-	EE[1] = errorFunc1.JacobianX2(meanChord, Xref, Xdotref, mass, deltaEref);
-	EE[2] = errorFunc1.JacobianX3(meanChord, Xref, Xdotref, mass, deltaEref);
-	EE[3] = errorFunc1.JacobianX4(meanChord, Xref, Xdotref, mass, deltaEref);
+	EE[0] = errorFunc1.JacobianXdot1(meanChord, Xref, Xdotref, mass, deltaEref);
+	EE[1] = errorFunc1.JacobianXdot2(meanChord, Xref, Xdotref, mass, deltaEref);
+	EE[2] = errorFunc1.JacobianXdot3(meanChord, Xref, Xdotref, mass, deltaEref);
+	EE[3] = errorFunc1.JacobianXdot4(meanChord, Xref, Xdotref, mass, deltaEref);
 
-	EE[0 + (4 * 1)] = errorFunc2.JacobianX1(meanChord, Xref, Xdotref, mass, deltaEref);
-	EE[1 + (4 * 1)] = errorFunc2.JacobianX2(meanChord, Xref, Xdotref, mass, deltaEref);
-	EE[2 + (4 * 1)] = errorFunc2.JacobianX3(meanChord, Xref, Xdotref, mass, deltaEref);
-	EE[3 + (4 * 1)] = errorFunc2.JacobianX4(meanChord, Xref, Xdotref, mass, deltaEref);
+	EE[0 + (4 * 1)] = errorFunc2.JacobianXdot1(meanChord, Xref, Xdotref, mass, deltaEref);
+	EE[1 + (4 * 1)] = errorFunc2.JacobianXdot2(meanChord, Xref, Xdotref, mass, deltaEref);
+	EE[2 + (4 * 1)] = errorFunc2.JacobianXdot3(meanChord, Xref, Xdotref, mass, deltaEref);
+	EE[3 + (4 * 1)] = errorFunc2.JacobianXdot4(meanChord, Xref, Xdotref, mass, deltaEref);
 
-	EE[0 + (4 * 2)] = errorFunc3.JacobianX1(meanChord, Xref, Xdotref, momentInertia, deltaEref);
-	EE[1 + (4 * 2)] = errorFunc3.JacobianX2(meanChord, Xref, Xdotref, momentInertia, deltaEref);
-	EE[2 + (4 * 2)] = errorFunc3.JacobianX3(meanChord, Xref, Xdotref, momentInertia, deltaEref);
-	EE[3 + (4 * 2)] = errorFunc3.JacobianX4(meanChord, Xref, Xdotref, momentInertia, deltaEref);
+	EE[0 + (4 * 2)] = errorFunc3.JacobianXdot1(meanChord, Xref, Xdotref, momentInertia, deltaEref);
+	EE[1 + (4 * 2)] = errorFunc3.JacobianXdot2(meanChord, Xref, Xdotref, momentInertia, deltaEref);
+	EE[2 + (4 * 2)] = errorFunc3.JacobianXdot3(meanChord, Xref, Xdotref, momentInertia, deltaEref);
+	EE[3 + (4 * 2)] = errorFunc3.JacobianXdot4(meanChord, Xref, Xdotref, momentInertia, deltaEref);
 
-	EE[0 + (4 * 3)] = errorFunc4.JacobianX1(Xref, Xdotref);
-	EE[1 + (4 * 3)] = errorFunc4.JacobianX2(Xref, Xdotref);
-	EE[2 + (4 * 3)] = errorFunc4.JacobianX3(Xref, Xdotref);
-	EE[3 + (4 * 3)] = errorFunc4.JacobianX4(Xref, Xdotref);
+	EE[0 + (4 * 3)] = errorFunc4.JacobianXdot1(Xref, Xdotref);
+	EE[1 + (4 * 3)] = errorFunc4.JacobianXdot2(Xref, Xdotref);
+	EE[2 + (4 * 3)] = errorFunc4.JacobianXdot3(Xref, Xdotref);
+	EE[3 + (4 * 3)] = errorFunc4.JacobianXdot4(Xref, Xdotref);
 
 	std::vector<double> AA;
 	AA.resize(4*4);
 
-	AA[0] = errorFunc1.JacobianXdot1(meanChord, Xref, Xdotref, mass, deltaEref);
-	AA[1] = errorFunc1.JacobianXdot2(meanChord, Xref, Xdotref, mass, deltaEref);
-	AA[2] = errorFunc1.JacobianXdot3(meanChord, Xref, Xdotref, mass, deltaEref);
-	AA[3] = errorFunc1.JacobianXdot4(meanChord, Xref, Xdotref, mass, deltaEref);
+	AA[0] = errorFunc1.JacobianX1(meanChord, Xref, Xdotref, mass, deltaEref);
+	AA[1] = errorFunc1.JacobianX2(meanChord, Xref, Xdotref, mass, deltaEref);
+	AA[2] = errorFunc1.JacobianX3(meanChord, Xref, Xdotref, mass, deltaEref);
+	AA[3] = errorFunc1.JacobianX4(meanChord, Xref, Xdotref, mass, deltaEref);
 
-	AA[0 + (4 * 1)] = errorFunc2.JacobianXdot1(meanChord, Xref, Xdotref, mass, deltaEref);
-	AA[1 + (4 * 1)] = errorFunc2.JacobianXdot2(meanChord, Xref, Xdotref, mass, deltaEref);
-	AA[2 + (4 * 1)] = errorFunc2.JacobianXdot3(meanChord, Xref, Xdotref, mass, deltaEref);
-	AA[3 + (4 * 1)] = errorFunc2.JacobianXdot4(meanChord, Xref, Xdotref, mass, deltaEref);
+	AA[0 + (4 * 1)] = errorFunc2.JacobianX1(meanChord, Xref, Xdotref, mass, deltaEref);
+	AA[1 + (4 * 1)] = errorFunc2.JacobianX2(meanChord, Xref, Xdotref, mass, deltaEref);
+	AA[2 + (4 * 1)] = errorFunc2.JacobianX3(meanChord, Xref, Xdotref, mass, deltaEref);
+	AA[3 + (4 * 1)] = errorFunc2.JacobianX4(meanChord, Xref, Xdotref, mass, deltaEref);
 
-	AA[0 + (4 * 2)] = errorFunc3.JacobianXdot1(meanChord, Xref, Xdotref, momentInertia, deltaEref);
-	AA[1 + (4 * 2)] = errorFunc3.JacobianXdot2(meanChord, Xref, Xdotref, momentInertia, deltaEref);
-	AA[2 + (4 * 2)] = errorFunc3.JacobianXdot3(meanChord, Xref, Xdotref, momentInertia, deltaEref);
-	AA[3 + (4 * 2)] = errorFunc3.JacobianXdot4(meanChord, Xref, Xdotref, momentInertia, deltaEref);
+	AA[0 + (4 * 2)] = errorFunc3.JacobianX1(meanChord, Xref, Xdotref, momentInertia, deltaEref);
+	AA[1 + (4 * 2)] = errorFunc3.JacobianX2(meanChord, Xref, Xdotref, momentInertia, deltaEref);
+	AA[2 + (4 * 2)] = errorFunc3.JacobianX3(meanChord, Xref, Xdotref, momentInertia, deltaEref);
+	AA[3 + (4 * 2)] = errorFunc3.JacobianX4(meanChord, Xref, Xdotref, momentInertia, deltaEref);
 
-	AA[0 + (4 * 3)] = errorFunc4.JacobianXdot1(Xref, Xdotref);
-	AA[1 + (4 * 3)] = errorFunc4.JacobianXdot2(Xref, Xdotref);
-	AA[2 + (4 * 3)] = errorFunc4.JacobianXdot3(Xref, Xdotref);
-	AA[3 + (4 * 3)] = errorFunc4.JacobianXdot4(Xref, Xdotref);
+	AA[0 + (4 * 3)] = errorFunc4.JacobianX1(Xref, Xdotref);
+	AA[1 + (4 * 3)] = errorFunc4.JacobianX2(Xref, Xdotref);
+	AA[2 + (4 * 3)] = errorFunc4.JacobianX3(Xref, Xdotref);
+	AA[3 + (4 * 3)] = errorFunc4.JacobianX4(Xref, Xdotref);
 
 	std::vector<double> BB;
 	BB.resize(4);
@@ -101,9 +102,61 @@ int main()
 	Matriz mEE(EE, 4, 4);
 
 
-	Matriz mEEinv = CalcInvMatriz(mEE);
+	Matriz mEEinv = CalcInvMatriz(mEE*-1);
 	
-	Matriz I = mEE * mEEinv;
+	Matriz I = mEEinv*mEE;
+
+	Matriz A = mEEinv * mAA;
+	Matriz B = mEEinv * mBB;
+	
+	MostrarMatriz(mEE);
+	MostrarMatriz(mAA);
+	MostrarMatriz(mBB);
+
+	MostrarMatriz(I);
+	MostrarMatriz(A);
+	MostrarMatriz(B);
+
+
+	std::vector<Matriz> estados;
+
+	const double dt = 0.001;
+	const double tempoSim = 60.0;
+	const size_t numEstados = tempoSim/dt;
+
+	ElevatorFunction posProf;
+
+	estados.resize(numEstados);
+
+	estados[0] = Matriz({70.0, 0.0, 0.0, 0.0}, 4, 1);
+	
+	Matriz estRef = estados[0];
+
+	double profRef = posProf(0.0);
+
+	for(size_t i = 1; i < numEstados; i++)
+	{
+		const double t = i * dt;
+		Matriz estadosDot = (A*(estados[i-1]-estRef)) + (B*(posProf(t)-profRef));
+
+		estados[i] = estados[i-1] + (estadosDot * dt);
+	} 
+
+
+	std::ofstream arq("saida.csv");
+	arq << "t;u;w;q;theta\n";
+
+	for(size_t i = 0; i < numEstados; i+=100)
+	{
+		arq << i*dt << ";";
+		arq << (*estados[i].GetPtrMatriz())[0];
+		arq << ";" << (*estados[i].GetPtrMatriz())[1];
+		arq << ";" << (*estados[i].GetPtrMatriz())[2];
+		arq << ";" << (*estados[i].GetPtrMatriz())[3];
+		arq <<"\n";
+	}
+
+	arq.close();
 
     return 0;
 }
