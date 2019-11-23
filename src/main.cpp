@@ -1,10 +1,7 @@
 #include <iostream>
 #include <vector>
-<<<<<<< HEAD
 #include <fstream>
 #include "ElevatorFunction.h"
-=======
->>>>>>> a000e56bf0ba1549c0e1eb08a8d8b3f6cf9bda77
 
 #include "f1.h"
 #include "f2.h"
