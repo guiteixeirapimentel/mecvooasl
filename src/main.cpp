@@ -109,8 +109,6 @@ int main()
 	Matriz A = mEEinv * mAA;
 	Matriz B = mEEinv * mBB;
 	
-	MostrarMatriz(Matriz({1.0, 2.0, 2.0, 1.0}, 2, 2));
-
 	MostrarMatriz(mEE);
 	MostrarMatriz(mAA);
 	MostrarMatriz(mBB);

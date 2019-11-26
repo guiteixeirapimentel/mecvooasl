@@ -16,7 +16,7 @@ public:
      double dynamicPressure, double S) const
     {
         return dynamicPressure*S*(
-            (cCL(alfa, alfadothat, qhat, deltaE)*cos(alfa)) - (cCD(alfa)*sin(alfa)));
+            (-cCL(alfa, alfadothat, qhat, deltaE)*cos(alfa)) - (cCD(alfa)*sin(alfa)));
     }
 
 private:
