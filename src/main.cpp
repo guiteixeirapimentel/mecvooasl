@@ -142,15 +142,15 @@ int main()
 
 
 	std::ofstream arq("saida.csv");
-	arq << "t;u;w;q;theta\n";
+	arq << "t;u;w;q [graus/s];theta [graus]\n";
 
 	for(size_t i = 0; i < numEstados; i+=100)
 	{
 		arq << i*dt << ";";
 		arq << (*estados[i].GetPtrMatriz())[0] + Xref.u;
 		arq << ";" << (*estados[i].GetPtrMatriz())[1] + Xref.w;
-		arq << ";" << (*estados[i].GetPtrMatriz())[2] + Xref.q;
-		arq << ";" << (*estados[i].GetPtrMatriz())[3] + Xref.theta;
+		arq << ";" << ((*estados[i].GetPtrMatriz())[2] + Xref.q) * 180.0 / M_PI;
+		arq << ";" << ((*estados[i].GetPtrMatriz())[3] + Xref.theta) * 180.0 / M_PI;
 		arq <<"\n";
 	}
 
