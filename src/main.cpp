@@ -109,12 +109,16 @@ int main()
 	Matriz A = mEEinv * mAA;
 	Matriz B = mEEinv * mBB;
 	
+	std::cout << "Matriz EE ";
 	MostrarMatriz(mEE);
+	std::cout << "\nMatriz AA ";
 	MostrarMatriz(mAA);
+	std::cout << "\nmatriz BB ";
 	MostrarMatriz(mBB);
 
-	MostrarMatriz(I);
+	std::cout << "\nMatriz A ";
 	MostrarMatriz(A);
+	std::cout << "\nMatriz B ";
 	MostrarMatriz(B);
 
 
