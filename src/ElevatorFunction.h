@@ -1,6 +1,7 @@
 #ifndef ELEVATORFUNCTION_H
 #define ELEVATORFUNCTION_H
 #define _USE_MATH_DEFINES_
+#define _USE_MATH_DEFINES
 #include <cmath>
 
 class ElevatorFunction

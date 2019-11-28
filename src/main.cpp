@@ -147,10 +147,10 @@ int main()
 	for(size_t i = 0; i < numEstados; i+=100)
 	{
 		arq << i*dt << ";";
-		arq << (*estados[i].GetPtrMatriz())[0];
-		arq << ";" << (*estados[i].GetPtrMatriz())[1];
-		arq << ";" << (*estados[i].GetPtrMatriz())[2];
-		arq << ";" << (*estados[i].GetPtrMatriz())[3];
+		arq << (*estados[i].GetPtrMatriz())[0] + Xref.u;
+		arq << ";" << (*estados[i].GetPtrMatriz())[1] + Xref.w;
+		arq << ";" << (*estados[i].GetPtrMatriz())[2] + Xref.q;
+		arq << ";" << (*estados[i].GetPtrMatriz())[3] + Xref.theta;
 		arq <<"\n";
 	}
 
