@@ -134,12 +134,10 @@ int main()
 
 	estados[0] = Matriz({0.0, 0.0, 0.0, 0.0}, 4, 1);
 	
-	double profRef = posProf(0.0);
-
 	for(size_t i = 1; i < numEstados; i++)
 	{
 		const double t = i * dt;
-		Matriz estadosDot = (A*(estados[i-1])) + (B*(posProf(t)-profRef));
+		Matriz estadosDot = (A*(estados[i-1])) + (B*(posProf(t)-deltaEref));
 
 		estados[i] = estados[i-1] + (estadosDot * dt);
 	} 
